@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * Handles user authentication
+ */
 class LoginController extends Controller
 {
     public function login(Request $request)
