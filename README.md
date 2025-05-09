@@ -59,3 +59,114 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Car Rental API
+
+A RESTful API for a car rental system built with Laravel.
+
+## API Endpoints
+
+### Authentication Endpoints
+
+#### Register a new user
+```http
+POST /api/register
+Content-Type: application/json
+
+{
+    "name": "string",
+    "email": "string",
+    "password": "string"
+}
+```
+
+#### Login
+```http
+POST /api/login
+Content-Type: application/json
+
+{
+    "email": "string",
+    "password": "string"
+}
+```
+
+### Car Endpoints
+All car endpoints require authentication. Include the token in the Authorization header:
+```http
+Authorization: Bearer <your_token>
+```
+
+#### Get all cars
+```http
+GET /api/cars
+```
+
+#### Get a specific car
+```http
+GET /api/cars/{id}
+```
+
+#### Create a new car
+```http
+POST /api/cars
+Content-Type: application/json
+
+{
+    "brand": "string",
+    "model": "string",
+    "year": integer,
+    "category": "string",
+    "price_per_day": number,
+    "is_available": boolean
+}
+```
+
+#### Update a car
+```http
+PUT /api/cars/{id}
+Content-Type: application/json
+
+{
+    "brand": "string",           // optional
+    "model": "string",           // optional
+    "year": integer,            // optional
+    "category": "string",       // optional
+    "price_per_day": number,    // optional
+    "is_available": boolean     // optional
+}
+```
+
+#### Delete a car
+```http
+DELETE /api/cars/{id}
+```
+
+## Deployment
+
+The API is deployed at: http://74.162.40.229
+
+## Database Schema
+
+### Users Table
+- id (primary key)
+- name (string)
+- email (string, unique)
+- password (string, hashed)
+- created_at (timestamp)
+- updated_at (timestamp)
+
+### Cars Table
+- id (primary key)
+- brand (string)
+- model (string)
+- year (integer)
+- category (string)
+- price_per_day (decimal)
+- is_available (boolean)
+- created_at (timestamp)
+- updated_at (timestamp)
+
+## Authentication
+
+The API uses Laravel Sanctum for token-based authentication. Include the token in the Authorization header for protected endpoints.
