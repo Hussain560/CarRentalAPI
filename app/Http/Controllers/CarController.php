@@ -27,6 +27,7 @@ class CarController extends Controller
         $validated = $request->validate([
             'brand' => 'required|string|max:255',
             'model' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'price_per_day' => 'required|numeric|min:0',
             'is_available' => 'boolean'
         ]);
@@ -39,19 +40,33 @@ class CarController extends Controller
         ], 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        
+        $validated = $request->validate([
+            'brand' => 'sometimes|required|string|max:255',
+            'model' => 'sometimes|required|string|max:255',
+            'category' => 'sometimes|required|string|max:255',
+            'price_per_day' => 'sometimes|required|numeric|min:0',
+            'is_available' => 'sometimes|boolean'
+        ]);
+
+        $car->update($validated);
+
+        return response()->json([
+            'message' => 'Car updated successfully',
+            'car' => $car
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        $car->delete();
+
+        return response()->json([
+            'message' => 'Car deleted successfully'
+        ]);
     }
 }

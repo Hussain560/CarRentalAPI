@@ -12,6 +12,7 @@ class Car extends Model
     protected $fillable = [
         'model',
         'brand',
+        'category',
         'price_per_day',
         'is_available'
     ];
