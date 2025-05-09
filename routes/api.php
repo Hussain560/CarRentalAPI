@@ -26,8 +26,10 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     
-    // Cars routes will go here
-    Route::get('/cars', [CarController::class, 'index']);
-    Route::get('/cars/{id}', [CarController::class, 'show']);
-    Route::post('/cars', [CarController::class, 'store']);
+    // Cars routes
+    Route::get('cars', [CarController::class, 'index']);
+    Route::get('cars/{id}', [CarController::class, 'show']);
+    Route::post('cars', [CarController::class, 'store']);
+    Route::put('cars/{id}', [CarController::class, 'update']);
+    Route::delete('cars/{id}', [CarController::class, 'destroy']);
 });

@@ -12,6 +12,7 @@ class Car extends Model
     protected $fillable = [
         'model',
         'brand',
+        'year',
         'category',
         'price_per_day',
         'is_available'
@@ -19,6 +20,7 @@ class Car extends Model
 
     protected $casts = [
         'is_available' => 'boolean',
-        'price_per_day' => 'decimal:2'
+        'price_per_day' => 'decimal:2',
+        'year' => 'integer'
     ];
 }
